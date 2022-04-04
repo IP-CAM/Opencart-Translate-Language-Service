@@ -1,0 +1,60 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <h1>{{ heading_title }}</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    {% if error_warning %}
+    <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"> {{ text_edit }}</h3>
+      </div>
+      <div class="panel-body">
+        <div id="er-es">
+          <v-app id="inspire">
+            <div>  
+              <v-tabs >            
+                <v-tab to="/">{{ tab_dash }}</v-tab>
+                <v-tab to="/html-encode">{{ tab_html_encode }}</v-tab>
+                <v-tab to="/itranslate">{{ tab_itranslate }}</v-tab>
+              </v-tabs>
+            <div>
+            <v-main>
+              <v-container fluid>
+                <router-view></router-view>
+              </v-container>
+            </v-main>
+          </v-app>
+			</div>
+		</div>	
+ 	</div>
+</div>	 
+
+<script src="../system/javascript_libs/vue.js"></script>
+<script src="../system/javascript_libs/vue-router.min.js"></script>
+<script src="../system/javascript_libs/vuex.js"></script>
+<script src="../system/javascript_libs/axios.js"></script>
+<script src="https://unpkg.com/vue-i18n@8"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+
+<script type="module" src="view/javascript/service_translate/router.vue.js"></script>
+<script type="module" src="view/javascript/service_translate/store.vue.js"></script>
+<script type="module" src="view/javascript/service_translate/app.vue.js"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+
+{{ footer }}
