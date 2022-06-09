@@ -32,6 +32,11 @@ class ControllerExtensionModuleServiceTranslate extends Controller
             $this->response->redirect($this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=module', true));
         }
 
+        $this->viewData['st_service'] = $this->_get('st_service');
+        $this->viewData['st_meta_suffix'] = $this->_get('st_meta_suffix');
+        $this->viewData['st_meta_from_title'] = $this->_get('st_meta_from_title');
+        $this->viewData['st_translate_description'] = $this->_get('st_translate_description');
+
         $this->viewData['st_itranslate_api_key'] = $this->_get('st_itranslate_api_key');
         $this->viewData['st_itranslate_api_version'] = $this->_get('st_itranslate_api_version');
         $this->viewData['st_itranslate_lang'] = $this->_get('st_itranslate_lang');
@@ -49,12 +54,10 @@ class ControllerExtensionModuleServiceTranslate extends Controller
     {
         $this->document->setTitle($this->language->get('heading_title'));
 
-        /*$this->document->addScript('../system/javascript_libs/vue.js', 'footer');
-        $this->document->addScript('../system/javascript_libs/vue-router.min.js', 'footer');
-        $this->document->addScript('../system/javascript_libs/vuex.js', 'footer');*/
-
-        //$this->document->addScript('../system/javascript_libs/vue.min.js');
-        //$this->_loadJSCSS();
+        $this->viewData['st_service'] = $this->_get('st_service');
+        $this->viewData['st_meta_suffix'] = $this->_get('st_meta_suffix');
+        $this->viewData['st_meta_from_title'] = $this->_get('st_meta_from_title');
+        $this->viewData['st_translate_description'] = $this->_get('st_translate_description');
 
         $this->response->setOutput($this->load->view('extension/module/service_translate_dashboard', $this->viewData));
     }

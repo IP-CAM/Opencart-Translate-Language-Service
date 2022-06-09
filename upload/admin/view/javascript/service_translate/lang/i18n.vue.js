@@ -1,5 +1,19 @@
 const messages = {
   en: {
+    dash:{
+      sub:{
+        missing_translations: 'Missing translations',
+        translate: 'Translate',
+        shop_products: 'Shop Products',
+        without_description: 'Without Description',
+        products: 'Products',
+        loading: 'Please wait',
+        success: 'Finished',
+        fail: 'procedure faild',
+        trasnslated: 'Translated',
+        close: 'Close'
+      }
+    },
     html_encode: {
       remove_tags: 'Tags to remove',
       instructions_title:'Instructions',
@@ -11,6 +25,20 @@ const messages = {
     }
   },
   el: {
+    dash:{
+      sub:{
+        missing_translations: 'Μεταφράσεις που λείπουν',
+        translate: 'Μετάφραση',
+        shop_products: 'Καταστήματος',
+        without_description: 'Χωρίς Περιγραφή',
+        products: 'Προϊόντα',
+        loading: 'Παρακαλώ περιμένετε',
+        success: 'H διαδικασία ολοκληρώθηκε επιτυχώς!',
+        fail: 'Η διαδικασία διακόπηκε...',
+        trasnslated: 'Μεταφράστηκαν',
+        close: 'Κλείσιμο'
+      }
+    },
     html_encode: {
       remove_tags: 'Διαγραφή tags',
       instructions_title:'Οδηγίες',
@@ -19,7 +47,7 @@ const messages = {
       decode_all: 'Εκτέλεση',
       decode_all_tooltip: 'Decode html από όλες τις περιγραφές προϊόντων.',
       products_parsed: ' περιγραφές προϊόντων έγιναν decode! Σύνολο ',
-    }
+    }    
   }
 }
 

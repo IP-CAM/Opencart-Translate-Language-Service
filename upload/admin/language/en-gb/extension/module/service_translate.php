@@ -22,6 +22,17 @@ $_['tab_itranslate']    = 'i-Translate';
 
 $_['select_lang']    = 'Select Language';
 
+//General
+$_['general']               = 'General Settings';
+$_['select_service']        = 'Select Translate Service';
+$_['services']              = [
+    'iTranslate' => 'itranslate'
+];
+
+$_['meta_title_suffix']     = 'Suffix for meta title';
+$_['meta_from_title']       = 'Get meta from title';
+$_['translate_description'] = 'translate description';
+
 //itranslate
 $_['itranslate']        = 'iTranslate';
 $_['it_api_key']        = 'Api Key';

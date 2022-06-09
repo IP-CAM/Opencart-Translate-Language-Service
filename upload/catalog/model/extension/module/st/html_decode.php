@@ -26,4 +26,10 @@ class ModelExtensionModuleStHtmlDecode extends Model
     {
         return $this->str;
     }
+    public static function clearAll($text)
+    {
+        $codes = ['<b>', '</b>', '<div>', '</div>', '<em>', '</em>', '<i>', '</i>', '<p>', '</p>', '<span>', '</span>', '<strong>', '</strong>'];
+        $text = str_replace($codes, '', $text);
+        return html_entity_decode($text);
+    }
 }

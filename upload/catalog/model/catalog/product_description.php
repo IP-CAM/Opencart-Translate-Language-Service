@@ -54,10 +54,10 @@ class ModelCatalogProductDescription extends Model
     {
         return $this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$this->productID
             . "', language_id = '" . (int)$this->languageID
-            . "', name = '" . $this->name
-            . "', description = '" . $this->description
+            . "', name = '" . $this->db->escape($this->name)
+            . "', description = '" . $this->db->escape($this->description)
             . "', tag = ''"
-            . ", meta_title = '" . $this->metaTitle
+            . ", meta_title = '" . $this->db->escape($this->metaTitle)
             . "', meta_description = ''"
             . ", meta_keyword = ''");
     }

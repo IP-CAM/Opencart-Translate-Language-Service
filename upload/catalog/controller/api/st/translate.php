@@ -32,6 +32,7 @@ class ControllerApiStTranslate extends Controller
         $this->load->model('extension/module/st/service_factory');
         $this->load->model('catalog/product_description');
         $this->load->model('catalog/product_descriptions');
+        $this->load->model('extension/module/st/html_decode');
 
         $this->translationServiceFactory = new ModelExtensionModuleStServiceFactory($this->registry);
 
@@ -72,7 +73,11 @@ class ControllerApiStTranslate extends Controller
 
         $this->translationServiceModel = $this->_createTranslationModel();
 
-        $productsDescriptions = $this->model_catalog_product_descriptions->getByLang($this->sourceLangID, $this->from, $this->limit);
+        try {
+            $productsDescriptions = $this->model_catalog_product_descriptions->getUntranslated(sourceLang: $this->sourceLangID, targetLang: $this->translateLangID);
+        } catch (Exception $ex) {
+            ModelApiResponse::badRequest($this->response);
+        }
 
         $totalTranslatedProducts = 0;
         foreach ($productsDescriptions as $product) {
@@ -108,8 +113,6 @@ class ControllerApiStTranslate extends Controller
             $this->request->get['translation_service'] === null
             || $this->request->get['source_lang'] === null
             || $this->request->get['translate_lang'] === null
-            || $this->request->get['from'] === null
-            || $this->request->get['limit'] === null
         )
             return false;
 
@@ -132,8 +135,14 @@ class ControllerApiStTranslate extends Controller
         $this->translationService = $this->request->get['translation_service'];
         $this->sourceLangID = (int)$this->request->get['source_lang'];
         $this->translateLangID = (int)$this->request->get['translate_lang'];
-        $this->from = (int)$this->request->get['from'];
-        $this->limit = (int)$this->request->get['limit'];
+
+        $this->from = 0;
+        if (isset($this->request->get['from']))
+            $this->from = (int)$this->request->get['from'];
+
+        $this->limit = 10;
+        if (isset($this->request->get['limit']))
+            $this->limit = (int)$this->request->get['limit'];
     }
 
     private function _parseOptionalParams(): void
@@ -185,7 +194,8 @@ class ControllerApiStTranslate extends Controller
             return '';
 
         try {
-            return $this->translationServiceModel->tranlate($text);
+            $clearText = ModelExtensionModuleStHtmlDecode::clearAll($text);
+            return $this->translationServiceModel->tranlate($clearText);
         } catch (Exception $ex) {
             $this->logs->write('File: ' . $ex->getFile() . ' | Line: ' . $ex->getLine() . ' | Message: ' . $ex->getMessage());
             return '';
