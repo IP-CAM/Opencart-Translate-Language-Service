@@ -12,7 +12,7 @@ new Vue({
 	router,
   i18n,
   propsData: { ...mountEl.dataset },
-  props: ["stService","stSuffix","stMetaFromTitle","stTranslateDescription"],
+  props: ["stService","stSuffix","stMetaFromTitle","stTranslateDescription","adminFolder"],
 	data(){
 		return {}
 	},
@@ -25,7 +25,7 @@ new Vue({
 			let url = new URL(window.location.href);
 			this.$store.commit('setBasicUrlData', {
 				token : url.searchParams.get("user_token"),
-				site_url : url.href.split("admin")[0],
+				site_url : url.href.split(this.adminFolder)[0]
 			});
 		},
     storeModuleSettings(){

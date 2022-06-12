@@ -6,7 +6,7 @@ This module is under development.
 
 ## Version
 
-0.2 (Under development)
+0.2.1 (Under development)
 
 ## Services Supported
 

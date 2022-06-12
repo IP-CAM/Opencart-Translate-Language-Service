@@ -59,6 +59,8 @@ class ControllerExtensionModuleServiceTranslate extends Controller
         $this->viewData['st_meta_from_title'] = $this->_get('st_meta_from_title');
         $this->viewData['st_translate_description'] = $this->_get('st_translate_description');
 
+        $this->viewData['admin_folder'] = $this->_getAdminFolder();
+
         $this->response->setOutput($this->load->view('extension/module/service_translate_dashboard', $this->viewData));
     }
 
@@ -129,5 +131,14 @@ class ControllerExtensionModuleServiceTranslate extends Controller
                 'href' => $this->url->link('extension/module/service_translate', 'user_token=' . $this->session->data['user_token'] . '&module_id=' . $this->request->get['module_id'], 'SSL')
             );
         }
+    }
+
+    private function _getAdminFolder()
+    {
+        $pathAdmin = rtrim(DIR_APPLICATION, '/');
+
+        $splitPath = explode('/', $pathAdmin);
+
+        return end($splitPath);
     }
 }
